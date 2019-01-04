@@ -49,7 +49,7 @@ class BinaryTree
 			print_node(queue[0])
 			queue << queue[0].right if !queue[0].right.nil?
 			queue << queue[0].left if !queue[0].left.nil?
-			return true if value == queue[0].data
+			return queue[0] if value == queue[0].data
 			queue.shift
 		end
 	end
