@@ -47,8 +47,8 @@ class BinaryTree
 		queue = [@root]
 		while queue.length > 0
 			print_node(queue[0])
-			queue << queue[0].right if !current.right.nil?
-			queue << queue[0].left if !current.left.nil?
+			queue << queue[0].right if !queue[0].right.nil?
+			queue << queue[0].left if !queue[0].left.nil?
 			return true if value == queue[0].data
 			queue.shift
 		end
