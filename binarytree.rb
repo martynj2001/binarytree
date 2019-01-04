@@ -29,8 +29,18 @@ class BinaryTree
 			add_node(@root, n)
 		end
 	end
+	
+	def print_tree 
+	
+		
+	end
 
-	def print_tree
+	def print_node node
+	
+		puts "[ #{node.parent} ]"
+		puts "( #{node.data} )"
+		puts "[ #{node.right.data} ]"
+		puts "[ #{node.left.data} ]"
 
 	end
 	
@@ -47,4 +57,4 @@ end
 list = BinaryTree.new
 list.build_tree ([5,1,4,7,22,42,31,100])
 
-list.print_tree
+list.print_node (list.root)
