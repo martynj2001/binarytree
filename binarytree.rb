@@ -49,9 +49,9 @@ class BinaryTree
 		if value > parent.data # Node connects on right
 			puts "#{value} is greater than #{parent.data}"
 			puts "parent.right #{parent.right ? ' exists.' : ' doesn\'t exist.'}"
-			parent.right ? add_node(value, parent.right) : parent.right = Node.new(value, parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
+			parent.right ? add_node(parent.right) : parent.right = Node.new(value, parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
 		elsif value < parent.data # Node connects on left
-			puts "#{value} is greater than #{parent.data}"
+			puts "#{value} is less than #{parent.data}"
 			puts "parent.left #{parent.left ? ' exists.' : ' doesn\'t exist.'}"
 			parent.left ? add_node(value, parent.left) : parent.left = Node.new(value, parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
 		end	
@@ -61,5 +61,3 @@ end
 
 list = BinaryTree.new
 list.build_tree ([5,1,4,7,22,42,31,100])
-
-list.print_node (list.root)
