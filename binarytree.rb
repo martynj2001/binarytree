@@ -62,8 +62,8 @@ class BinaryTree
 		
 		print_node(parent) if value.nil? 
 		return parent if value == parent.data
-		dfs_rec (parent.left) if parent.left 
-		dfs_rec (parent.right) if parent.right
+		dfs_rec (parent.left, value) if parent.left 
+		dfs_rec (parent.right, value) if parent.right
 	end
 end
 
