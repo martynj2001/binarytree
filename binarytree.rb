@@ -77,5 +77,5 @@ list.print_node (list.breadth_first_search(42))
 puts "Depth first Search for: 42"
 list.depth_first_search
 puts "Depth first search - recursive"
-list.dfs_rec
+list.dfs_rec (list.root)
 
