@@ -38,12 +38,10 @@ class BinaryTree
 
 	def print_node node
 	
-		puts "[ #{node.parent} ]"
+		puts "[ #{node.parent ? node.parent.data : nil} ]"
 		puts "( #{node.data} )"
-		right = node.right
-		puts "[ #{right.data} ]"
-		left = node.left
-		puts "[ #{left.data} ]"
+		puts "[ #{node.right ? node.right.data : nil} ]"
+		puts "[ #{node.left ? node.left.data : nil} ]"
 
 	end
 	
@@ -51,16 +49,20 @@ class BinaryTree
 		if value > parent.data # Node connects on right
 			puts "#{value} is greater than #{parent.data}"
 			if parent.right
-				add_node(value, parent.right)
-			else
+				puts "parent already has a right node"
+				add_node(parent.right, value)
+					else
+				puts "Creat New node on the right"
 				parent.right = Node.new (parent)
 			end
 			# parent.right ? add_node(value, parent.right) : Node.new(parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
 		elsif value < parent.data # Node connects on left
 			puts "#{value} is less than #{parent.data}"
 			if parent.left
-				add_node(value, parent.left)
+				puts "pasrent already has left node"
+				add_node(parent.left, value)
 			else
+				puts "Create New node on left"
 				parent.left = Node.new (parent)
 			end
 			# parent.left ? add_node(value, parent.left) : Node.new(parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
