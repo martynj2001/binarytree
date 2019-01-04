@@ -7,10 +7,10 @@ class Node
 	attr_reader :data
 	
 	def initialize (data, parent = nil)
+		@data = data
 		@parent = parent
 		@right = nil
 		@left = nil
-		@data = data
 	end
 
 end
@@ -48,25 +48,12 @@ class BinaryTree
 	def add_node parent, value
 		if value > parent.data # Node connects on right
 			puts "#{value} is greater than #{parent.data}"
-			if parent.right
-				puts "parent already has a right node"
-				add_node(parent.right, value)
-			else
-				puts "Create New node on the right"
-				parent.right = Node.new (value, parent)
-			end
-			# parent.right ? add_node(value, parent.right) : Node.new(parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
+			puts "parent.right #{parent.right ? ' exists.' : ' doesn\'t exist.'}"
+			parent.right ? add_node(value, parent.right) : parent.right = Node.new(value, parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
 		elsif value < parent.data # Node connects on left
-			puts "#{value} is less than #{parent.data}"
-			if parent.left
-				puts "Parent already has left node: #{parent.left.data}"
-				add_node(parent.left, value)
-			else
-				puts "Create New node on left"
-				parent.left = Node.new (value, parent)
-				puts "New left node added to #{parent.data}"
-			end
-			# parent.left ? add_node(value, parent.left) : Node.new(parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
+			puts "#{value} is greater than #{parent.data}"
+			puts "parent.left #{parent.left ? ' exists.' : ' doesn\'t exist.'}"
+			parent.left ? add_node(value, parent.left) : parent.left = Node.new(value, parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
 		end	
 	end
 
