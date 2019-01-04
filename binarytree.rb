@@ -25,6 +25,7 @@ class BinaryTree
 	
 	def build_tree arr
 		@root = Node.new (arr.shift)
+		self.print_node (@root)
 		arr.each do |n| 
 			add_node(@root, n)
 		end
