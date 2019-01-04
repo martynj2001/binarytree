@@ -53,17 +53,17 @@ class BinaryTree
 				add_node(parent.right, value)
 					else
 				puts "Creat New node on the right"
-				parent.right = Node.new (parent)
+				parent.right = Node.new (value, parent)
 			end
 			# parent.right ? add_node(value, parent.right) : Node.new(parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
 		elsif value < parent.data # Node connects on left
 			puts "#{value} is less than #{parent.data}"
 			if parent.left
-				puts "pasrent already has left node"
+				puts "Parent already has left node: #{parent.left.data}"
 				add_node(parent.left, value)
 			else
 				puts "Create New node on left"
-				parent.left = Node.new (parent)
+				parent.left = Node.new (value, parent)
 			end
 			# parent.left ? add_node(value, parent.left) : Node.new(parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
 		end	
