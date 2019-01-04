@@ -25,35 +25,40 @@ class BinaryTree
 	
 	def build_tree arr
 		@root = Node.new (arr.shift)
-		self.print_node (@root)
 		arr.each do |n| 
 			add_node(@root, n)
 		end
 	end
 	
-	def print_tree 
-	
-		
-	end
-
 	def print_node node
 	
-		p "[ #{node.parent ? node.parent.data : nil} ]:( #{node.data} ):[ #{node.right ? node.right.data : nil} ]:[ #{node.left ? node.left.data : nil} ]"
+		puts "[ #{node.parent ? node.parent.data : nil} ]:( #{node.data} ):[ #{node.right ? node.right.data : nil} ]:[ #{node.left ? node.left.data : nil} ]"
 	end
 	
 	def add_node parent, value
 		if value > parent.data # Node connects on right
-			puts "#{value} is greater than #{parent.data}"
-			puts "parent.right #{parent.right ? ' exists.' : ' doesn\'t exist.'}"
 			parent.right ? add_node(parent.right, value) : parent.right = Node.new(value, parent) # If theres alreay a right node, then go around again, else create node and connect to parent.
 		elsif value < parent.data # Node connects on left
-			puts "#{value} is less than #{parent.data}"
-			puts "parent.left #{parent.left ? ' exists.' : ' doesn\'t exist.'}"
 			parent.left ? add_node(parent.left, value) : parent.left = Node.new(value, parent) # If theres alreay a left node, then go around again, else create node and connect to parent.
 		end	
 	end
+	
+	def breadth_first_search value = nil
+		queue = [@root]
+		while queue.length > 0
+			print_node(queue[0])
+			queue << queue[0].right if !current.right.nil?
+			queue << queue[0].left if !current.left.nil?
+			return true if value == queue[0].data
+			queue.shift
+		end
+	end
+	
+	def depth_first_search value
 
+	end
 end
 
 list = BinaryTree.new
 list.build_tree ([5,1,4,7,22,42,31,100])
+list.breadth_first_search
