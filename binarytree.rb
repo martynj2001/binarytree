@@ -58,7 +58,7 @@ class BinaryTree
 
 	end
 	
-	def dfs_rec parent value = nil
+	def dfs_rec parent, value = nil
 		
 		print_node(parent) 
 		return parent if value == parent.data
