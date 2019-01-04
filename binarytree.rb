@@ -43,3 +43,8 @@ class BinaryTree
 	end
 
 end
+
+list = BinaryTree.new
+list.build_tree ([5,1,4,7,22,42,31,100])
+
+list.print_tree
