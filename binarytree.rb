@@ -61,9 +61,12 @@ class BinaryTree
 	def dfs_rec parent, value = nil
 		
 		print_node(parent) if value.nil? 
-		return parent if value == parent.data
-		dfs_rec (parent.left, value) if parent.left 
-		dfs_rec (parent.right, value) if parent.right
+		if value == parent.data
+			puts "#{value} found in Node: #{print_node(parent)}"		
+		else
+			dfs_rec(parent.left, value) if parent.left 
+			dfs_rec(parent.right, value) if parent.right
+		end
 	end
 end
 
@@ -78,4 +81,4 @@ list.print_node (list.breadth_first_search(42))
 puts "Depth first search - recursive"
 list.dfs_rec (list.root)
 p "Find value: 42 - "
-list.print_node (list.dfs_rec(list.root, 42))
+list.dfs_rec(list.root, 42)
