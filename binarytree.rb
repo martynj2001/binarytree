@@ -47,18 +47,35 @@ class BinaryTree
 		queue = [@root]
 		while queue.length > 0
 			print_node(queue[0])
-			queue << queue[0].right if !current.right.nil?
 			queue << queue[0].left if !current.left.nil?
-			return true if value == queue[0].data
+			queue << queue[0].right if !current.right.nil?
+			return queue[0] if value == queue[0].data
 			queue.shift
 		end
 	end
 	
-	def depth_first_search value
+	def depth_first_search value = nil
 
+	end
+	
+	def dfs_rec parent value = nil
+		
+		print_node(parent) 
+		return parent if value == parent.data
+		dfs_rec (parent.left) if parent.left 
+		dfs_rec (parent.right) if parent.right
 	end
 end
 
 list = BinaryTree.new
 list.build_tree ([5,1,4,7,22,42,31,100])
+
+puts "Breath first Search for: nil" 
 list.breadth_first_search
+puts "Breath first Search for: 42"
+list.print_node (list.breadth_first_search(42))
+puts "Depth first Search for: 42"
+list.depth_first_search
+puts "Depth first search - recursive"
+list.dfs_rec
+
