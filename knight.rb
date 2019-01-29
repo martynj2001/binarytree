@@ -1,44 +1,43 @@
 # The Odin Project, Data Structures and alogorithms asssignment pt II. The Knight chesspiece script.
 
-include binarytree.rb
 
-class Vertex
-    attr_accessor :name, :neighbours, :weight
-    def initialize (name)
-        :name = name
-        :neighbours = []
-        :weight = []
-    end
-end
+class Knight
 
-class Graph
+    attr_accessor :pos_x, :pos_y, :possible_moves
+    attr_reader :moves
 
-
-end
-
-class Chess_Square
-    attr_accessor :x_coord, :y_coord, :moves
-
-    def initialize (x, y)
-        @x_coord = x
-        @y_coord = y
-        @moves = []
+    def initialize (posistion)
+        @moves = [[1, 2], [1,-2], [-1, 2],[-1,-2],[2, 1],[2, -1],[-2, 1],[-2, -1]]
+        @pos_x = posistion[0]
+        @pos_y = posistion[1]
+        @possible_moves = []
+        set_possible_moves
     end
 
-    def set_moves (piece)
-        if piece == 'knight'
-            #knight can only move 2 steps forward and 1 to side
-            @moves << [x_coord + 1, y_coord + 2]
-            @moves << [x_coord + 1, y_coord - 2]
-            @moves << [x_coord - 1, y_coord + 2]
-            @moves << [x_coord - 1, y_coord - 2]
-            @moves << [x_coord + 2, y_coord + 1]
-            @moves << [x_coord + 2, y_coord - 1]
-            @moves << [x_coord - 1, y_coord - 1]
-            @moves << [x_coord - 2, y_coord - 1]
+    def set_possible_moves
+        @moves.each do |move| 
+            x = @pos_x + move[0] # => 1, 1,  -1, -1, 2, 2,  -2, -2
+            y = @pos_y + move[1] # => 2, -2, 2,  -2, 1, -1, 1,  -1
+            @possible_moves << [x, y] if (0..7).include?(x) && (0..7).include?(y)
         end
     end
 
+    def current_position
+        current_position = [pos_x, pos_y]
+    end
 
+    def move_knight (new_posn)
+        if @possible_moves.include?(new_posn)
+            @pos_x = new_posn[0]
+            @pos_y = new_posn[1]
+        end
+    end
+end
+
+knight = Knight.new([0,0]) 
+knight.possible_moves # => [[1, 2], [2, 1]]
+knight.current_position # => [0, 0]
+knight.move_knight ([1,2])
+knight.current_position # => [1, 2]
 
 
