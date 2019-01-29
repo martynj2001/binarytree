@@ -16,8 +16,8 @@ class ChessPiece
 
     def set_possible_moves
         @moves.each do |move| 
-            x = @pos_x + move[0] # => 1, 1,  -1, -1, 2, 2,  -2, -2
-            y = @pos_y + move[1] # => 2, -2, 2,  -2, 1, -1, 1,  -1
+            x = @pos_x + move[0] # => 1, 1,  -1, -1, 2, 2,  -2, -2, 2, 2, 0, 0, 3, 3, -1, -1
+            y = @pos_y + move[1] # => 2, -2, 2,  -2, 1, -1, 1,  -1, 4, 0, 4, 0, 3, 1, 3,  1
             @possible_moves << [x, y] if (0..7).include?(x) && (0..7).include?(y)
         end
     end
@@ -30,6 +30,8 @@ class ChessPiece
         if @possible_moves.include?(new_posn)
             @pos_x = new_posn[0]
             @pos_y = new_posn[1]
+            @possible_moves = []
+            set_possible_moves
         end
     end
 end
@@ -50,5 +52,6 @@ knight.possible_moves # => [[1, 2], [2, 1]]
 knight.current_position # => [0, 0]
 knight.move_piece ([1,2])
 knight.current_position # => [1, 2]
+knight.possible_moves # => [[2, 4], [2, 0], [0, 4], [0, 0], [3, 3], [3, 1]]
 
 
