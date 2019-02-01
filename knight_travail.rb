@@ -39,30 +39,25 @@ end
 
 def knight_travails (start, finish = nil)
 
+	puts "No destination" if finish.nil? 
 	path = [start]
 	queue = [start]
 	knight = Knight.new ([start])
-	while queue.length > 0
-	 puts "No destination" if finish.nil? 
-	 knight.possible_moves.each do |m| 
-	 	if m == finish
-	 		puts "Knight Travails - #{path << m}"
-	 		return
+	knight.possible_moves.each do |m| 
+		if m == finish
+			path << m
+			queue.clear
 		else
 			queue << m
 		end
 	end
-	#
-	knight.move_piece
+	
+	while queue.length > 0
+		
+		
+	end
+	
+	puts "Knight Travails - #{path}"
 end
 
-def breadth_first_search value = nil
-	queue = [@root]
-	while queue.length > 0
-		print_node(queue[0]) if value.nil?
-		queue << queue[0].right if !queue[0].right.nil?
-		queue << queue[0].left if !queue[0].left.nil?
-		return queue[0] if value == queue[0].data
-		queue.shift
-	end
-end
+knight_travails([0,0],[2,4])
