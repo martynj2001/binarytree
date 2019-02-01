@@ -5,12 +5,17 @@ require_relative 'chesspiece'
 
 class Vertex
 
-    attr_accessor :piece :coord :neighbours :weight
+    attr_accessor :piece :value :neighbours :weight
 
-    def initialize (coordinates)
-        @coord = coordinates
+    def initialize (value)
+        @value = coordinates
         @neighbours = []
         @weights = []
+    end
+
+    def add_edge (vertex, weight = 1)
+        @neighbours << vertex
+        @weights << 1
     end
 
 end
@@ -20,44 +25,36 @@ class Graph
     attr_accessor :vertices
 
     def initialize
-        @vertices = []
+        @vertices = {}
     end
 
-    def add_vertex(coordinates)
-        @vertices << Vertex.new(coordinates)
+    def add_vertex(vertex)
+        @vertices[vertex.value] = vertex
     end
 
-    def find_vertex_by_coord (coordinates)
-        @vertices.each {|vertex| return vertex if vertex.coord == coordinates}
-        nil
+    def add_edge (vertex_1, vertex_2)
+        #Need to re-read Hash.
+        @vertices[vertex_1].add_edge(@vertices[vertex_2])
+        @vertices[vertex_2].add_edge(@vertices[vertex_1])
     end
 
     def count
         @vertices.length
     end
+
+    def bfs (value)
+
+    end
+
+    def dfs (value)
+
+    end
+
+
 end
 
 def knight_travails (start, finish = nil)
 
-	puts "No destination" if finish.nil? 
-	path = [start]
-	queue = [start]
-	knight = Knight.new ([start])
-	knight.possible_moves.each do |m| 
-		if m == finish
-			path << m
-			queue.clear
-		else
-			queue << m
-		end
-	end
-	
-	while queue.length > 0
-		
-		
-	end
-	
-	puts "Knight Travails - #{path}"
 end
 
 knight_travails([0,0],[2,4])
