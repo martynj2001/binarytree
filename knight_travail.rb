@@ -36,3 +36,33 @@ class Graph
         @vertices.length
     end
 end
+
+def knight_travails (start, finish = nil)
+
+	path = [start]
+	queue = [start]
+	knight = Knight.new ([start])
+	while queue.length > 0
+	 puts "No destination" if finish.nil? 
+	 knight.possible_moves.each do |m| 
+	 	if m == finish
+	 		puts "Knight Travails - #{path << m}"
+	 		return
+		else
+			queue << m
+		end
+	end
+	#
+	knight.move_piece
+end
+
+def breadth_first_search value = nil
+	queue = [@root]
+	while queue.length > 0
+		print_node(queue[0]) if value.nil?
+		queue << queue[0].right if !queue[0].right.nil?
+		queue << queue[0].left if !queue[0].left.nil?
+		return queue[0] if value == queue[0].data
+		queue.shift
+	end
+end
