@@ -3,11 +3,12 @@
 
 class ChessPiece
 
-    attr_accessor :pos_x, :pos_y, :possible_moves
+    attr_accessor :piece, :pos_x, :pos_y, :possible_moves
     attr_reader :moves
 
     def initialize (posistion)
         @moves = []
+        @piece = nil
         @pos_x = posistion[0]
         @pos_y = posistion[1]
         @possible_moves = []
@@ -39,6 +40,7 @@ end
 class Knight < ChessPiece
 
     def initialize (posistion)
+        @piece = :knight
         @moves = [[1, 2], [1,-2], [-1, 2],[-1,-2],[2, 1],[2, -1],[-2, 1],[-2, -1]]
         @pos_x = posistion[0]
         @pos_y = posistion[1]
@@ -47,11 +49,12 @@ class Knight < ChessPiece
     end
 end
 
-knight = Knight.new([0,0]) 
-knight.possible_moves # => [[1, 2], [2, 1]]
-knight.current_position # => [0, 0]
-knight.move_piece ([1,2])
-knight.current_position # => [1, 2]
-knight.possible_moves # => [[2, 4], [2, 0], [0, 4], [0, 0], [3, 3], [3, 1]]
+class Bishop < ChessPiece
+
+end
+
+class Pawn < ChessPiece
+
+end
 
 

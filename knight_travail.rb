@@ -1,60 +1,29 @@
 # The Odin Project, Data Structures and alogorithms asssignment pt II. The Knight chesspiece script.
 
 require_relative 'chesspiece'
-
-
-class Vertex
-
-    attr_accessor :piece :value :neighbours :weight
-
-    def initialize (value)
-        @value = coordinates
-        @neighbours = []
-        @weights = []
-    end
-
-    def add_edge (vertex, weight = 1)
-        @neighbours << vertex
-        @weights << 1
-    end
-
-end
-
-class Graph
-
-    attr_accessor :vertices
-
-    def initialize
-        @vertices = {}
-    end
-
-    def add_vertex(vertex)
-        @vertices[vertex.value] = vertex
-    end
-
-    def add_edge (vertex_1, vertex_2)
-        #Need to re-read Hash.
-        @vertices[vertex_1].add_edge(@vertices[vertex_2])
-        @vertices[vertex_2].add_edge(@vertices[vertex_1])
-    end
-
-    def count
-        @vertices.length
-    end
-
-    def bfs (value)
-
-    end
-
-    def dfs (value)
-
-    end
-
-
-end
+require_relative 'chessboard'
 
 def knight_travails (start, finish = nil)
 
 end
 
-knight_travails([0,0],[2,4])
+def bfs_dest(knight, dest)
+    search_path = [knight.value] 
+    queue = [knight.value]
+    while queue.length > 0
+        knight.possible_moves.each do |s| 
+            unless queue.include?(s)
+                return puts "Destination found #{search_path << s}." if s == dest
+                queue << s
+                search_path << s
+            end
+        end
+        queue.shift
+        knight.move_piece(queue[0])
+    end        
+end
+
+knight = Knight.new([0,0])
+bfs_dest(knight, [4,4])
+
+# >> Destination found [nil, [1, 2], [2, 1], [2, 4], [2, 0], [0, 4], [0, 0], [3, 3], [3, 1], [3, 6], [3, 2], [1, 6], [1, 2], [4, 5], [4, 3], [0, 5], [0, 3], [4, 4]].
