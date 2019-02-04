@@ -3,7 +3,7 @@
 
 class ChessPiece
 
-    attr_accessor :piece, :pos_x, :pos_y, :possible_moves
+    attr_accessor :piece, :pos_x, :pos_y, :possible_moves :previous_coord
     attr_reader :moves
 
     def initialize (posistion)
