@@ -3,10 +3,11 @@
 
 class ChessPiece
 
-    attr_accessor :piece, :pos_x, :pos_y, :possible_moves :previous_coord
+    attr_accessor :piece, :pos_x, :pos_y, :possible_moves, :posistion
     attr_reader :moves
 
     def initialize (posistion)
+        @posistion = posistion
         @moves = []
         @piece = nil
         @pos_x = posistion[0]
@@ -39,13 +40,39 @@ end
 
 class Knight < ChessPiece
 
-    def initialize (posistion)
+    attr_accessor :previous_knight
+
+    def initialize (posistion, previous_knight = nil)
         @piece = :knight
+        @posistion = posistion
+        @previous_knight = previous_knight
         @moves = [[1, 2], [1,-2], [-1, 2],[-1,-2],[2, 1],[2, -1],[-2, 1],[-2, -1]]
         @pos_x = posistion[0]
         @pos_y = posistion[1]
         @possible_moves = []
         set_possible_moves
+    end
+
+    def move_piece (new_posn)
+        if @possible_moves.include?(new_posn)
+            @previous_knight = current_knight
+            @pos_x = new_posn[0]
+            @pos_y = new_posn[1]
+            @possible_moves = []
+            set_possible_moves
+        end
+    end
+
+    def return_knight (new_posn)
+        @previous_knight = current_knight
+        @pos_x = new_posn[0]
+        @pos_y = new_posn[1]
+        @possible_moves = []
+        set_possible_moves
+    end
+
+    def current_knight
+        self
     end
 end
 
