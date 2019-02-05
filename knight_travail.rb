@@ -3,9 +3,9 @@
 require_relative 'chesspiece'
 require_relative 'chessboard'
 
-def knight_travails (knight, finish)
+def knight_travails (start, finish)
 
-    queue = [knight] 
+    queue = [Knight.new(start)]
     found = false
 
     route = []
@@ -21,46 +21,14 @@ def knight_travails (knight, finish)
             end
         end
          
-        current_knight.possible_moves.each do |k|
-        	p_knight = Knight.new(k, current_knight)
-        	queue << p_knight
-        end
+        current_knight.possible_moves.each do |k| {queue << Knight.new(k, current_knight)}
         	
     end
     p route
 end
 
-def bfs_dest(knight, dest)
-    search_path = [knight.posistion]
-    queue = [knight.posistion]
-    while queue.length > 0
-        knight.possible_moves.each do |s| 
-            unless queue.include?(s)
-                return puts "Destination found #{search_path << s}." if s == dest
-                queue << s
-                search_path << s
-            end
-        end
-        queue.shift
-        knight.move_piece(queue[0])
-    end        
-end
+knight_travails([0,0], [2,4])
 
-knight = Knight.new([0,0])
-p knight.posistion
-#bfs_dest(knight, [2,4])
-knight_travails(knight, [2,4])
 
-# >> [0, 0]
-# >> Destination found [[0, 0], [1, 2], [2, 1], [2, 4]].
-# >> [2, 4]
-# >> [0, 0]
-# >> [[1, 2], [1, -2], [-1, 2], [-1, -2], [2, 1], [2, -1], [-2, 1], [-2, -1]]
-
-# ~> NoMethodError
-# ~> undefined method `posistion' for #<Array:0x00007fdda110ed80>
-# ~>
-# ~> knight_travail.rb:23:in `knight_travails'
-# ~> knight_travail.rb:51:in `<main>'
 
 
