@@ -18,11 +18,10 @@ def knight_travails (knight, finish)
             until current_knight.previous_knight == nil
                 p current_knight.posistion
                 p current_knight.previous_knight.posistion
-                current_knight = current_knight.return_knight (current_knight.previous_knight.posistion)
+                current_knight = current_knight.previous_knight
                 p current_knight
-                route.unshift current_knight.posistion # ~> NoMethodError: undefined method `posistion' for #<Array:0x00007fdda110ed80>
+                route.unshift current_knight.posistion
             end
-            
         end
         current_knight.possible_moves.each {|k| queue << Knight.new(k, current_knight)}
     end

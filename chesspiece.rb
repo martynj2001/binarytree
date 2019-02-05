@@ -63,14 +63,6 @@ class Knight < ChessPiece
         end
     end
 
-    def return_knight (new_posn)
-        @previous_knight = current_knight
-        @pos_x = new_posn[0]
-        @pos_y = new_posn[1]
-        @possible_moves = []
-        set_possible_moves
-    end
-
     def current_knight
         self
     end
