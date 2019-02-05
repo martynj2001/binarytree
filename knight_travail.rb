@@ -4,8 +4,6 @@ require_relative 'chesspiece'
 require_relative 'chessboard'
 
 def knight_travails (knight, finish)
-	
-	puts knight.possible_moves
 
     queue = [knight] 
     found = false
@@ -50,7 +48,7 @@ end
 
 knight = Knight.new([0,0])
 p knight.posistion
-bfs_dest(knight, [2,4])
+#bfs_dest(knight, [2,4])
 knight_travails(knight, [2,4])
 
 # >> [0, 0]
