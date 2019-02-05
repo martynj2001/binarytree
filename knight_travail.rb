@@ -8,14 +8,14 @@ def knight_travails (knight, finish)
     queue = [knight] 
     found = false
 
-    route = [knight.posistion]
+    route = []
     until found
         current_knight = queue.shift
         if current_knight.posistion == finish
             route.unshift current_knight.posistion
             found = true
 
-            until current_knight.previous_knight.posistion == knight.posistion
+            until current_knight.previous_knight.nil?
                 current_knight = current_knight.previous_knight
                 route.unshift current_knight.posistion
             end
