@@ -15,15 +15,17 @@ def knight_travails (knight, finish)
             route.unshift current_knight.posistion
             found = true
 
-            until current_knight.previous_knight == nil
-                p current_knight.posistion
-                p current_knight.previous_knight.posistion
+            until current_knight.previous_knight.posistion == knight.posistion
                 current_knight = current_knight.previous_knight
-                p current_knight
                 route.unshift current_knight.posistion
             end
         end
-        current_knight.possible_moves.each {|k| queue << Knight.new(k, current_knight)}
+        current_knight.possible_moves.each do |k|
+        	p_knight = Knight.new(k, current_knight)
+        	p p_knight.position
+        	queue << p_knight
+        end
+        	
     end
     p route
 end
