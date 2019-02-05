@@ -24,3 +24,10 @@ knight_moves([3,3],[0,0]) == [[3,3],[1,2],[0,0]]
 
 I use Jon Cheek's 'Seeing is Believing Gem' with VS Code - highly recommended inline debug/runtime environment
 https://github.com/brandoncc/vscode-seeing-is-believing
+
+FILES:
+
+binarytree.rb - source for Project 1
+chessboard.rb - not used (yet - probably for Chess game project later in course)
+chesspiece.rb - Chesspiece class, plus Knight class ( & Roke & Bishop - for later!)
+knight_travail.rb - Script to find shortest path from start location to finish location.
