@@ -20,10 +20,11 @@ def knight_travails (knight, finish)
                 route.unshift current_knight.posistion
             end
         end
-        current_knight.possible_moves.each do |k|
-        	p_knight = Knight.new(k, current_knight)
-        	puts "next posistion: #{p_knight.posistion}, #{p_knight.previous_knight.posistion}"
-        	queue << p_knight
+        p current_knight.possible_moves
+	            current_knight.possible_moves.each do |k|
+	        	p_knight = Knight.new(k, current_knight)
+	        	puts "next posistion: #{p_knight.posistion}, #{p_knight.previous_knight.posistion}"
+	        	queue << p_knight
         end
         	
     end
