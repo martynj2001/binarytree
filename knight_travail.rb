@@ -20,15 +20,11 @@ def knight_travails (start, finish)
                 route.unshift current_knight.posistion
             end
         end
-         
-        current_knight.possible_moves.each do |k| {queue << Knight.new(k, current_knight)}
-        	
+        current_knight.possible_moves.each {|k| queue << Knight.new(k, current_knight)}        	
     end
     p route
 end
 
 knight_travails([0,0], [2,4])
 
-
-
-
+# >> [[0, 0], [1, 2], [2, 4]]
