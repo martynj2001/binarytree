@@ -22,7 +22,7 @@ def knight_travails (knight, finish)
         end
         current_knight.possible_moves.each do |k|
         	p_knight = Knight.new(k, current_knight)
-        	p p_knight.posistion
+        	puts "next posistion: #{p_knight.posistion}, #{p_knight.previous_knight.posistion}"
         	queue << p_knight
         end
         	
